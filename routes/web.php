@@ -5,6 +5,7 @@ use App\Post;
 use App\User;
 use App\Photo;
 use App\Country;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -333,6 +334,30 @@ Route::get('/', function () {
 
 
 
+/*
+|--------------------------------------------------------------------------
+|Carbon and dates
+|--------------------------------------------------------------------------
+*/
+
+
+Route::get('/dates', function(){
+    $date = new DateTime('+1 week');
+    echo $date->format('m=d=Y');
+    echo '<br>';
+    echo Carbon::now()->addDays(10)->diffForHumans();
+    echo '<br>';
+    echo Carbon::now()->subMonths(5)->diffForHumans();
+    echo '<br>';
+    echo Carbon::now()->yesterday()->diffForHumans();
+});
+
+
+
+
+
+
+
 
 
 /*
@@ -349,11 +374,9 @@ Route::get('/', function () {
 // }]); now we throw the one in the other one for security
 
 
-
 Route::group(['middlewareGroups'=>'web'], function(){
 
    
     Route::resource('/posts','PostsController');
-
 
 });
