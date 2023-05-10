@@ -65,7 +65,15 @@ class User extends Authenticatable
         return $this->morphMany('App\Photo', 'imageable');
     }
 
+    //accessor methods  //camelcase with get infront and Attribute in back
+    public function getNameAttribute($i){
+        return ucfirst($i); //uppercase first letter
+        // return strtoupper($i); //uppercase all
+    }
 
-
+     //Mutator methods  //camelcase with set infront and Attribute in back
+     public function setNameAttribute($i){
+       $this->attributes['name'] = strtoupper($i);
+     }
 
 }

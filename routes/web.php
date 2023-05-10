@@ -339,17 +339,38 @@ Route::get('/', function () {
 |Carbon and dates
 |--------------------------------------------------------------------------
 */
+// Route::get('/dates', function(){
+//     $date = new DateTime('+1 week');
+//     echo $date->format('m=d=Y');
+//     echo '<br>';
+//     echo Carbon::now()->addDays(10)->diffForHumans();
+//     echo '<br>';
+//     echo Carbon::now()->subMonths(5)->diffForHumans();
+//     echo '<br>';
+//     echo Carbon::now()->yesterday()->diffForHumans();
+// });
 
 
-Route::get('/dates', function(){
-    $date = new DateTime('+1 week');
-    echo $date->format('m=d=Y');
-    echo '<br>';
-    echo Carbon::now()->addDays(10)->diffForHumans();
-    echo '<br>';
-    echo Carbon::now()->subMonths(5)->diffForHumans();
-    echo '<br>';
-    echo Carbon::now()->yesterday()->diffForHumans();
+/*
+|--------------------------------------------------------------------------
+|Accessors -manipulate data before getting it out of the db -> in models
+|--------------------------------------------------------------------------
+*/
+Route::get('/getname', function(){
+    $user = User::find(1);
+    echo $user->name;
+});
+
+
+/*
+|--------------------------------------------------------------------------
+|Mutator -manipulate data before inserting it into the db -> in models
+|--------------------------------------------------------------------------
+*/
+Route::get('/setname', function(){
+    $user = User::find(1);
+    $user->name = 'william';
+    $user -> save();
 });
 
 
