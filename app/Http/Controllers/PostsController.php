@@ -35,12 +35,12 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // Post::create($request->all());
+        $this->validate($request,[ //to make sure that we cant create a blank post
+            'title'=>'required|max:50',
+            'body'=>'required|max:50'
+        ]);
 
-        $post = new Post;
-        $post->title = $request->title;
-        $post->save();
-
+        Post::create($request->all());
         return redirect('/posts'); //to go to index
     }
 

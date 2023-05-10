@@ -4,11 +4,21 @@
 
 <h1>Create Post</h1>
 
-<form method="post" action="/posts">
+    {!! Form::open(['method'=>'POST', 'action'=>'PostsController@store']) !!}
     @csrf
-    <input type="text" name='title' placeholder="Enter Title" >
+    {!! Form::label('title', 'Title :') !!} 
+    {!! Form::text('title', null, ['class'=>'form-control']) !!}
+    {!! Form::submit('create Post') !!}
+    {!! Form::close() !!}
 
-    <input type="submit" name='submit'>
-</form>
 
-@endsection
+
+    @if((count($errors)) > 0)
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
+@endsection 

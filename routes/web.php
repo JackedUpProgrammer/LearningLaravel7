@@ -341,6 +341,19 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::resource('/posts','PostsController');
+// Route::resource('/posts','PostsController');
+
+// //for errors to show
+// Route::group(['middleware'=>'web', function(){
+
+// }]); now we throw the one in the other one for security
 
 
+
+Route::group(['middlewareGroups'=>'web'], function(){
+
+   
+    Route::resource('/posts','PostsController');
+
+
+});
