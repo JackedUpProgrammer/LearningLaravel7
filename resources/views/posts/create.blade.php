@@ -4,11 +4,17 @@
 
 <h1>Create Post</h1>
 
-    {!! Form::open(['method'=>'POST', 'action'=>'PostsController@store']) !!}
+    {!! Form::open(['method'=>'POST', 'action'=>'PostsController@store', 'files'=>true]) !!}
     @csrf
     {!! Form::label('title', 'Title :') !!} 
     {!! Form::text('title', null, ['class'=>'form-control']) !!}
     {!! Form::submit('create Post') !!}
+
+    
+  
+    {!! Form::file('file',['class'=>'form-control']) !!}
+   
+
     {!! Form::close() !!}
 
 

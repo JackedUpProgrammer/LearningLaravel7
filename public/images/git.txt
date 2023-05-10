@@ -1,0 +1,26 @@
+//creating a laravel project with a specific version called blog->
+composer create-project --prefer-dist laravel/laravel:^7.0 blog
+
+
+
+explorer .
+
+
+
+
+1 git init //if git has not been innitialised
+2 git add .
+3 git commit -am "first commit"
+4 git push 
+
+
+
+-advanced
+5 git remote add origin git@github.com:User/UserRepo.git
+
+6 git push -u origin master
+(only for the very first push, after this, you only need to do "git push")
+
+
+new project 1 2 3 5 6
+old project  2 3 4

@@ -17,7 +17,8 @@ class Post extends Model
    protected $fillable =
    [    
     'title',
-    'body'
+    'body',
+    'path'
    ];
 
     //to be able to soft delete//we do not have the deleted _at yet , gonna create it now//dates is allready a class
@@ -42,4 +43,10 @@ class Post extends Model
     public function tags(){
         return $this->morphToMany('App\Tag','taggable');
     }
+
+    public static function scopeLatest($query){ //query scope //scope in beginning with camel case.
+      return $query->orderBy('id', 'asc')->get();
+    }
+
+
 }

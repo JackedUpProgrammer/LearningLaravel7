@@ -13,7 +13,9 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $posts = Post::all();
+    {   
+        $posts = Post::all();
+       //$posts = Post::latest();
         return view('posts.index', compact('posts'));
     }
 
@@ -34,14 +36,23 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request,[ //to make sure that we cant create a blank post
-            'title'=>'required|max:50',
-            'body'=>'required|max:50'
-        ]);
+    {       
 
-        Post::create($request->all());
-        return redirect('/posts'); //to go to index
+        $input = $request->all();
+        if($file = $request->file('file')){  //if this file exists
+        $name= $file->getClientOriginalName();
+        $file->move('images', $name); //this will also create a images folder for you if you dont have one
+        $input['path']= $name;
+     }
+        Post::create($input);
+
+
+        // $this->validate($request,[ //to make sure that we cant create a blank post
+        //     'title'=>'required|max:50'
+        // ]);
+
+        // Post::create($request->all());
+        // return redirect('/posts'); //to go to index
     }
 
     /**
